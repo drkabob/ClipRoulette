@@ -76,7 +76,6 @@ def get_rotation(filename):
 def convert_video(source_location, output_location, vid_encoding=None, audio_encoding=None, width=None, rotate=False, start_time=None, length_code=None, mute=False):
     # Start assembling command list
     command = ["ffmpeg", "-i", source_location]
-    print(source_location, output_location, vid_encoding, audio_encoding, width, rotate, start_time, length_code, mute)
 
     # Go through the arguments and if they are defined, add them
     if vid_encoding is not None:

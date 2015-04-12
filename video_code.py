@@ -90,6 +90,7 @@ def everything(retries=10):
         source_link = get_random_youtube_link()
         return make_short(source_link, id_generator()), source_link
     except Exception as e:
+        raise e
         if retries > 0:
             return everything(retries-1)
         else:
