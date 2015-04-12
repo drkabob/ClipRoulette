@@ -17,10 +17,12 @@
                 <h2>ClipRoulette</h2>
                 <p>See a brief overview of the parts of YouTube you never knew existed</p>
                 <div id="main-player">
-                    Loading...
+                <video autoplay loop>
+                    <source src="{{ link }}" type="video/mp4">
+                </video>
                 </div>
                 <br>
-                <script src="/statics/main.js"></script>
+                <h3><a href="{{ link }}"> {{ link }} </a></h3>
             </div>
         </div>
     </body>

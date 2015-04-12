@@ -17,7 +17,11 @@ def get_gif():
 def get_old_gif():
     """Pulls a random GIF link. FAST!!!"""
     link, source_link = 'videos/' + random.choice(os.listdir('videos')), ""
-    return json.dumps({'link': flask.request.url_root + link, 'source': source_link})
+    return json.dumps({'link': flask.request.url_root + link, 'source': source_link, 'inner': flask.request.url_root + 'video/' + link.lstrip('videos/').rstrip('.mp4')})
+
+@app.route('/video/<vid_id>')
+def video(vid_id):
+    return flask.render_template('video.html', link=flask.request.url_root + 'videos/' + vid_id + '.mp4')
 
 @app.route('/videos/<path:path>')
 def get_video(path):

@@ -33,11 +33,15 @@ function onNewVid(data) {
     var mainVideo = document.createElement("video");
     var source = document.createElement("source");
     var source_link = document.createElement("h3");
+    var the_link = document.createElement("a");
+    console.log(data);
+    the_link.href = data.inner;
     mainVideo.autoplay = true;
     source.src = data.link;
+    the_link.innerHTML = data.inner;
     source.type = "video/mp4";
-    source_link.innerHTML = data.source;
     mainVideo.appendChild(source);
+    source_link.appendChild(the_link);
     mainVideo.onended = function(e) {
         getOldVideo();
     };

@@ -3,8 +3,10 @@
 	padding-top: 10px;
 }
 
+
 body {
 	background-color: #EFEFEF;
+    font-family: "Arial";
 }
 
 #main-player, #vidcontainer, #video, input {
