@@ -14,5 +14,9 @@ def get_gif():
 def get_video(path):
     return flask.send_from_directory('videos', path)
 
+@app.route('/')
+def main():
+    pass
+
 if __name__ == '__main__':
     app.run(debug=True)

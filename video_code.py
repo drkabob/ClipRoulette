@@ -70,20 +70,33 @@ def get_random_start_stop(video_length):
 def make_short(youtube_link, token=id_generator()):
     """Takes a YouTube link, an optional random token, and start and stop strings and
     generates a short video out of them. Returns the locations of the video."""
-    place = PATH + "tmp/" + token
-    # Download the video
-    subprocess.check_call([
-        "youtube-dl", "-o", place + "-vid", "-f", "5", "--max-filesize",
-        "40m", "-u", YT_USERNAME, "-p", YT_PASSWORD, youtube_link],
-        stdout=DEVNULL, stderr=subprocess.STDOUT)
+    try:
+        place = PATH + "tmp/" + token
+        # Download the video
+        subprocess.check_call([
+            "youtube-dl", "-o", place + "-vid", "-f", "5", "--max-filesize",
+            "40m", "-u", YT_USERNAME, "-p", YT_PASSWORD, youtube_link],
+            stdout=DEVNULL, stderr=subprocess.STDOUT)
 
-    length = ffmpeg.get_video_length(place + '-vid')
+        length = ffmpeg.get_video_length(place + '-vid')
 
-    start, stop = get_random_start_stop(length)
+        start, stop = get_random_start_stop(length)
 
-    out = 'videos/{}.mp4'.format(token)
-    ffmpeg.convert_video(place + '-vid', out, 'h264', 'aac', '480', ffmpeg.get_rotation(place + '-vid'), start, stop)
-    return out
+        out = 'videos/{}.mp4'.format(token)
+        ffmpeg.convert_video(place + '-vid', out, 'h264', 'aac', '480', ffmpeg.get_rotation(place + '-vid'), start, stop)
+
+    except Exception as e:
+        # Delete unnecessary files
+        out = 'Broken'
+
+    finally:
+        # Delete unnecessary files
+        files = glob.glob(place + "*")
+        arguments = ["rm"]
+        arguments += files
+        check_call(arguments)
+
+        return out
 
 def everything(retries=10):
     try:
