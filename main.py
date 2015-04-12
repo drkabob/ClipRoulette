@@ -14,6 +14,10 @@ def get_gif():
 def get_video(path):
     return flask.send_from_directory('videos', path)
 
+@app.route('/static/<path:path>')
+def static(path):
+    return flask.send_from_directory('static', path)
+
 @app.route('/')
 def main():
     pass
