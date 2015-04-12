@@ -4,4 +4,4 @@ It works by picking a random YouTube video and creating a small clip (up to 10 s
 
 So, sit back, relax, and enjoy the videos you never would have watched otherwise!
 
-The ffmpeg.py was part of a project 16 year old Nathan made, though at this point its so heavily modified, though at this point most of that code has either been rewritten or deleted.
+The ffmpeg.py was part of a project 16 year old Nathan made, though at this point its so heavily modified, so most of that code has either been rewritten or deleted.
