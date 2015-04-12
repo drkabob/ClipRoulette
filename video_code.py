@@ -67,7 +67,7 @@ def get_random_start_stop(video_length):
 
     return start, tosend
 
-def make_short(youtube_link, token=id_generator()):
+def make_short(youtube_link, token):
     """Takes a YouTube link, an optional random token, and start and stop strings and
     generates a short video out of them. Returns the locations of the video."""
     place = PATH + "tmp/" + token
@@ -87,9 +87,11 @@ def make_short(youtube_link, token=id_generator()):
 
 def everything(retries=10):
     try:
-        return make_short(get_random_youtube_link())
+        source_link = get_random_youtube_link()
+        return make_short(source_link, id_generator()), source_link
     except Exception as e:
         if retries > 0:
             return everything(retries-1)
         else:
             raise e
+
